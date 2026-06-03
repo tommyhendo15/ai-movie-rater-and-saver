@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MovieTracker AI</title>
+  <title>Add Movie - MovieTracker AI</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
   <nav class="navbar">
     <a href="home.html">Home</a>
     <a href="register.html">Register</a>
@@ -23,11 +22,47 @@
     <a href="checkpoints.html">Checkpoints</a>
   </nav>
 
-  <!-- PAGE CONTENT -->
   <main>
-    <h1>PAGE TITLE</h1>
-    <p>Replace this with page content.</p>
+    <h1>Add Movie to Watchlist</h1>
+
+    <form id="movieForm">
+      <input type="text" id="title" placeholder="Movie Title" required />
+      <input type="text" id="genre" placeholder="Genre" required />
+      <input type="number" id="rating" placeholder="Rating (0-5)" min="0" max="5" required />
+
+      <button type="submit">Add Movie</button>
+    </form>
+
+    <p id="message"></p>
   </main>
+
+  <script>
+    document.getElementById("movieForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const title = document.getElementById("title").value;
+      const genre = document.getElementById("genre").value;
+      const rating = document.getElementById("rating").value;
+
+      const movie = {
+        id: "movie-" + Date.now(),
+        title,
+        genre,
+        rating: Number(rating),
+        userId: JSON.parse(localStorage.getItem("currentUser"))?.id || "guest"
+      };
+
+      let movies = JSON.parse(localStorage.getItem("movies")) || [];
+      movies.push(movie);
+
+      localStorage.setItem("movies", JSON.stringify(movies));
+
+      document.getElementById("message").innerText =
+        "Movie added successfully!";
+
+      document.getElementById("movieForm").reset();
+    });
+  </script>
 
 </body>
 </html>

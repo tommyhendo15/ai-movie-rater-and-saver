@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MovieTracker AI</title>
+  <title>Watchlist - MovieTracker AI</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
   <nav class="navbar">
     <a href="home.html">Home</a>
     <a href="register.html">Register</a>
@@ -23,11 +22,53 @@
     <a href="checkpoints.html">Checkpoints</a>
   </nav>
 
-  <!-- PAGE CONTENT -->
   <main>
-    <h1>PAGE TITLE</h1>
-    <p>Replace this with page content.</p>
+    <h1>My Watchlist</h1>
+
+    <div id="movieList"></div>
   </main>
+
+  <script>
+    function loadMovies() {
+      const movies = JSON.parse(localStorage.getItem("movies")) || [];
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+      const container = document.getElementById("movieList");
+      container.innerHTML = "";
+
+      const userMovies = movies.filter(m => m.userId === currentUser?.id);
+
+      if (userMovies.length === 0) {
+        container.innerHTML = "<p>No movies added yet.</p>";
+        return;
+      }
+
+      userMovies.forEach(movie => {
+        const div = document.createElement("div");
+
+        div.innerHTML = `
+          <h3>${movie.title}</h3>
+          <p>Genre: ${movie.genre}</p>
+          <p>Rating: ${movie.rating}/5</p>
+          <button onclick="deleteMovie('${movie.id}')">Remove</button>
+        `;
+
+        container.appendChild(div);
+      });
+    }
+
+    function deleteMovie(id) {
+      let movies = JSON.parse(localStorage.getItem("movies")) || [];
+
+      movies = movies.filter(m => m.id !== id);
+
+      localStorage.setItem("movies", JSON.stringify(movies));
+
+      loadMovies();
+    }
+
+    loadMovies();
+  </script>
 
 </body>
 </html>
