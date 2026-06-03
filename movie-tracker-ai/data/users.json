@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": "user-001",
+    "name": "Tommy",
+    "email": "tommy@example.com",
+    "favoriteGenre": "Action"
+  },
+  {
+    "id": "user-002",
+    "name": "Sarah",
+    "email": "sarah@example.com",
+    "favoriteGenre": "Comedy"
+  },
+  {
+    "id": "user-003",
+    "name": "Jake",
+    "email": "jake@example.com",
+    "favoriteGenre": "Sci-Fi"
+  },
+  {
+    "id": "user-004",
+    "name": "Emily",
+    "email": "emily@example.com",
+    "favoriteGenre": "Drama"
+  },
+  {
+    "id": "user-005",
+    "name": "Ryan",
+    "email": "ryan@example.com",
+    "favoriteGenre": "Thriller"
+  }
+]

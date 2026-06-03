@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": "ann-001",
+    "title": "Movie of the Week",
+    "message": "Watch Interstellar",
+    "date": "2026-06-01"
+  },
+  {
+    "id": "ann-002",
+    "title": "New Feature",
+    "message": "AI recommendations available",
+    "date": "2026-06-02"
+  },
+  {
+    "id": "ann-003",
+    "title": "Top Rated",
+    "message": "The Dark Knight leads this week",
+    "date": "2026-06-03"
+  },
+  {
+    "id": "ann-004",
+    "title": "Community Pick",
+    "message": "Inception is trending",
+    "date": "2026-06-04"
+  },
+  {
+    "id": "ann-005",
+    "title": "Weekend Marathon",
+    "message": "Sci-Fi movie weekend",
+    "date": "2026-06-05"
+  }
+]

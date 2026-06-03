@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "id": "movie-001",
+    "userId": "user-001",
+    "title": "Inception",
+    "genre": "Sci-Fi",
+    "rating": 5
+  },
+  {
+    "id": "movie-002",
+    "userId": "user-002",
+    "title": "The Dark Knight",
+    "genre": "Action",
+    "rating": 5
+  },
+  {
+    "id": "movie-003",
+    "userId": "user-003",
+    "title": "Interstellar",
+    "genre": "Sci-Fi",
+    "rating": 4
+  },
+  {
+    "id": "movie-004",
+    "userId": "user-004",
+    "title": "La La Land",
+    "genre": "Drama",
+    "rating": 4
+  },
+  {
+    "id": "movie-005",
+    "userId": "user-005",
+    "title": "Whiplash",
+    "genre": "Drama",
+    "rating": 5
+  }
+]
