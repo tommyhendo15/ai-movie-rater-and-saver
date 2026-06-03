@@ -1,12 +1,15 @@
 .navbar {
   background: #111;
   padding: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
 .navbar a {
   color: white;
-  margin-right: 10px;
   text-decoration: none;
+  font-size: 14px;
 }
 
 .navbar a:hover {

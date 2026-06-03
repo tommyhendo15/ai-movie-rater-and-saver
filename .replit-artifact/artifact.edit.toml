@@ -1,0 +1,9 @@
+id = "movie-tracker-ai"
+kind = "web"
+name = "Movie Tracker AI"
+version = "1.0.0"
+
+[[services]]
+localPort = 8080
+name = "Movie Tracker AI"
+paths = ["/"]

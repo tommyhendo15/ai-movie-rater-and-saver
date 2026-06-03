@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Movie Tracker AI"
+version = "1.0.0"
+id = "artifacts/movie-tracker-ai"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21315
+
+[services.development]
+run = "pnpm --filter @workspace/movie-tracker-ai run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/movie-tracker-ai", "run", "build" ]
+publicDir = "artifacts/movie-tracker-ai/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21315"
+BASE_PATH = "/"
