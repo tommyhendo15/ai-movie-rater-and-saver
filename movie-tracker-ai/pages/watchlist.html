@@ -50,6 +50,11 @@
           <h3>${movie.title}</h3>
           <p>Genre: ${movie.genre}</p>
           <p>Rating: ${movie.rating}/5</p>
+
+          <a href="edit-movie.html?id=${movie.id}">
+            <button>Edit</button>
+          </a>
+
           <button onclick="deleteMovie('${movie.id}')">Remove</button>
         `;
 

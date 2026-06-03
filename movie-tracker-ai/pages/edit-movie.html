@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MovieTracker AI</title>
+  <title>Edit Movie - MovieTracker AI</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
   <nav class="navbar">
     <a href="home.html">Home</a>
     <a href="register.html">Register</a>
@@ -23,11 +22,53 @@
     <a href="checkpoints.html">Checkpoints</a>
   </nav>
 
-  <!-- PAGE CONTENT -->
   <main>
-    <h1>PAGE TITLE</h1>
-    <p>Replace this with page content.</p>
+    <h1>Edit Movie</h1>
+
+    <div id="editContainer"></div>
   </main>
+
+  <script>
+    const movies = JSON.parse(localStorage.getItem("movies")) || [];
+    const urlParams = new URLSearchParams(window.location.search);
+    const movieId = urlParams.get("id");
+
+    const movie = movies.find(m => m.id === movieId);
+
+    const container = document.getElementById("editContainer");
+
+    if (!movie) {
+      container.innerHTML = "<p>Movie not found.</p>";
+    } else {
+      container.innerHTML = `
+        <form id="editForm">
+          <input type="text" id="title" value="${movie.title}" required />
+          <input type="text" id="genre" value="${movie.genre}" required />
+          <input type="number" id="rating" value="${movie.rating}" min="0" max="5" required />
+
+          <button type="submit">Save Changes</button>
+        </form>
+      `;
+
+      document.getElementById("editForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        movie.title = document.getElementById("title").value;
+        movie.genre = document.getElementById("genre").value;
+        movie.rating = Number(document.getElementById("rating").value);
+
+        const updatedMovies = movies.map(m =>
+          m.id === movie.id ? movie : m
+        );
+
+        localStorage.setItem("movies", JSON.stringify(updatedMovies));
+
+        alert("Movie updated successfully!");
+
+        window.location.href = "watchlist.html";
+      });
+    }
+  </script>
 
 </body>
 </html>
