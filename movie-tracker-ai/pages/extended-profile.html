@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MovieTracker AI</title>
+  <title>Extended Profile - MovieTracker AI</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
   <nav class="navbar">
     <a href="home.html">Home</a>
     <a href="register.html">Register</a>
@@ -23,11 +22,78 @@
     <a href="checkpoints.html">Checkpoints</a>
   </nav>
 
-  <!-- PAGE CONTENT -->
   <main>
-    <h1>PAGE TITLE</h1>
-    <p>Replace this with page content.</p>
+    <h1>Extended Profile</h1>
+
+    <form id="extendedProfileForm">
+
+      <input type="text" id="favoriteGenre" placeholder="Favorite Genre" required />
+      <input type="text" id="secondGenre" placeholder="Second Favorite Genre" required />
+      <input type="text" id="favoriteMovie" placeholder="Favorite Movie" required />
+      <input type="text" id="favoriteActor" placeholder="Favorite Actor" required />
+      <input type="text" id="favoriteDirector" placeholder="Favorite Director" required />
+      <input type="text" id="movieLength" placeholder="Preferred Movie Length" required />
+      <input type="text" id="favoriteDecade" placeholder="Favorite Decade" required />
+      <input type="text" id="streamingService" placeholder="Favorite Streaming Service" required />
+      <input type="text" id="moodPreference" placeholder="Movie Mood Preference" required />
+
+      <button type="submit">Save Profile</button>
+    </form>
+
+    <p id="message"></p>
+
+    <div id="extendedProfileDisplay"></div>
   </main>
+
+  <script>
+    const form = document.getElementById("extendedProfileForm");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const extendedProfile = {
+        favoriteGenre: document.getElementById("favoriteGenre").value,
+        secondGenre: document.getElementById("secondGenre").value,
+        favoriteMovie: document.getElementById("favoriteMovie").value,
+        favoriteActor: document.getElementById("favoriteActor").value,
+        favoriteDirector: document.getElementById("favoriteDirector").value,
+        movieLength: document.getElementById("movieLength").value,
+        favoriteDecade: document.getElementById("favoriteDecade").value,
+        streamingService: document.getElementById("streamingService").value,
+        moodPreference: document.getElementById("moodPreference").value
+      };
+
+      localStorage.setItem("extendedProfile", JSON.stringify(extendedProfile));
+
+      document.getElementById("message").innerText =
+        "Extended profile saved successfully!";
+
+      loadProfile();
+    });
+
+    function loadProfile() {
+      const data = JSON.parse(localStorage.getItem("extendedProfile"));
+
+      const box = document.getElementById("extendedProfileDisplay");
+
+      if (!data) return;
+
+      box.innerHTML = `
+        <h3>Your Extended Profile</h3>
+        <p><strong>Favorite Genre:</strong> ${data.favoriteGenre}</p>
+        <p><strong>Second Genre:</strong> ${data.secondGenre}</p>
+        <p><strong>Favorite Movie:</strong> ${data.favoriteMovie}</p>
+        <p><strong>Favorite Actor:</strong> ${data.favoriteActor}</p>
+        <p><strong>Favorite Director:</strong> ${data.favoriteDirector}</p>
+        <p><strong>Preferred Length:</strong> ${data.movieLength}</p>
+        <p><strong>Favorite Decade:</strong> ${data.favoriteDecade}</p>
+        <p><strong>Streaming Service:</strong> ${data.streamingService}</p>
+        <p><strong>Mood Preference:</strong> ${data.moodPreference}</p>
+      `;
+    }
+
+    loadProfile();
+  </script>
 
 </body>
 </html>
