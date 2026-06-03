@@ -33,7 +33,7 @@
     <hr>
 
     <section>
-      <h2>🎬 All Movies</h2>
+      <h2>🎬 Movies (Editable)</h2>
       <div id="moviesList"></div>
     </section>
   </main>
@@ -50,40 +50,57 @@
       moviesContainer.innerHTML = "";
 
       // USERS
-      if (users.length === 0) {
-        usersContainer.innerHTML = "<p>No users found.</p>";
-      } else {
-        users.forEach(user => {
-          const div = document.createElement("div");
+      users.forEach(user => {
+        const div = document.createElement("div");
 
-          div.innerHTML = `
-            <p><strong>Name:</strong> ${user.name}</p>
-            <p><strong>Email:</strong> ${user.email}</p>
-            <hr>
-          `;
+        div.innerHTML = `
+          <p><strong>Name:</strong> ${user.name}</p>
+          <p><strong>Email:</strong> ${user.email}</p>
+          <hr>
+        `;
 
-          usersContainer.appendChild(div);
-        });
-      }
+        usersContainer.appendChild(div);
+      });
 
-      // MOVIES
-      if (movies.length === 0) {
-        moviesContainer.innerHTML = "<p>No movies found.</p>";
-      } else {
-        movies.forEach(movie => {
-          const div = document.createElement("div");
+      // MOVIES (EDITABLE)
+      movies.forEach(movie => {
+        const div = document.createElement("div");
 
-          div.innerHTML = `
-            <p><strong>Title:</strong> ${movie.title}</p>
-            <p><strong>Genre:</strong> ${movie.genre}</p>
-            <p><strong>Rating:</strong> ${movie.rating}/5</p>
-            <p><strong>User ID:</strong> ${movie.userId}</p>
-            <hr>
-          `;
+        div.innerHTML = `
+          <input type="text" id="title-${movie.id}" value="${movie.title}" />
+          <input type="text" id="genre-${movie.id}" value="${movie.genre}" />
+          <input type="number" id="rating-${movie.id}" value="${movie.rating}" min="0" max="5" />
 
-          moviesContainer.appendChild(div);
-        });
-      }
+          <button onclick="updateMovie('${movie.id}')">Update</button>
+
+          <p><strong>User ID:</strong> ${movie.userId}</p>
+          <hr>
+        `;
+
+        moviesContainer.appendChild(div);
+      });
+    }
+
+    function updateMovie(id) {
+      let movies = JSON.parse(localStorage.getItem("movies")) || [];
+
+      const updatedMovies = movies.map(movie => {
+        if (movie.id === id) {
+          return {
+            ...movie,
+            title: document.getElementById(`title-${id}`).value,
+            genre: document.getElementById(`genre-${id}`).value,
+            rating: Number(document.getElementById(`rating-${id}`).value)
+          };
+        }
+        return movie;
+      });
+
+      localStorage.setItem("movies", JSON.stringify(updatedMovies));
+
+      alert("Movie updated successfully!");
+
+      loadAdminData();
     }
 
     loadAdminData();
