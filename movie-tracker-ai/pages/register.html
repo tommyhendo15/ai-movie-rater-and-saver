@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MovieTracker AI</title>
+  <title>Register - MovieTracker AI</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
   <nav class="navbar">
     <a href="home.html">Home</a>
     <a href="register.html">Register</a>
@@ -23,11 +22,20 @@
     <a href="checkpoints.html">Checkpoints</a>
   </nav>
 
-  <!-- PAGE CONTENT -->
   <main>
-    <h1>PAGE TITLE</h1>
-    <p>Replace this with page content.</p>
+    <h1>Register</h1>
+
+    <form id="registerForm">
+      <input type="text" id="name" placeholder="Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Create Account</button>
+    </form>
+
+    <p id="message"></p>
   </main>
+
+  <script src="../js/auth.js"></script>
 
 </body>
 </html>
