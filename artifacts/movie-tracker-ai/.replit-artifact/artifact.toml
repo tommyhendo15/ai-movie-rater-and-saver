@@ -12,20 +12,15 @@ version = "1.0.0"
 [[services]]
 name = "web"
 paths = [ "/" ]
-localPort = 21315
+localPort = 8080
 
 [services.development]
-run = "pnpm --filter @workspace/movie-tracker-ai run dev"
+run = "cd /home/runner/workspace/movie-tracker-ai && node server.js"
 
 [services.production]
-build = [ "pnpm", "--filter", "@workspace/movie-tracker-ai", "run", "build" ]
-publicDir = "artifacts/movie-tracker-ai/dist/public"
+build = [ "cd", "/home/runner/workspace/movie-tracker-ai", "&&", "node", "server.js" ]
+publicDir = "movie-tracker-ai"
 serve = "static"
 
-[[services.production.rewrites]]
-from = "/*"
-to = "/index.html"
-
 [services.env]
-PORT = "21315"
-BASE_PATH = "/"
+PORT = "8080"
